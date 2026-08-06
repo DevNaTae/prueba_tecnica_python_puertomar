@@ -1,0 +1,66 @@
+name: sterilization-control
+
+services:
+  database:
+    image: postgres:18.4-bookworm
+    environment:
+      POSTGRES_DB: puertitomar
+      POSTGRES_USER: nat
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nat -d puertitomar"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+    volumes:
+      - database-data:/var/lib/postgresql
+      - ./database:/sql:ro
+    restart: unless-stopped
+
+  migration:
+    image: postgres:18.4-bookworm
+    environment:
+      PGHOST: database
+      PGDATABASE: puertitomar
+      PGUSER: nat
+    command: ["psql", "-v", "ON_ERROR_STOP=1", "-f", "/sql/001_schema.sql"]
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./database:/sql:ro
+    restart: "no"
+
+  application:
+    build:
+      context: .
+      target: runtime
+      args:
+        APP_UID: ${LOCAL_UID:-1000}
+        APP_GID: ${LOCAL_GID:-1000}
+    environment:
+      DATABASE_URL: dbname=puertitomar user=nat host=database port=5432
+    depends_on:
+      migration:
+        condition: service_completed_successfully
+    volumes:
+      - ./salida:/app/salida
+    restart: "no"
+
+  tests:
+    profiles: ["test"]
+    build:
+      context: .
+      target: tests
+      args:
+        APP_UID: ${LOCAL_UID:-1000}
+        APP_GID: ${LOCAL_GID:-1000}
+    environment:
+      TEST_DATABASE_URL: dbname=puertitomar user=nat host=database port=5432
+    depends_on:
+      migration:
+        condition: service_completed_successfully
+    restart: "no"
+
+volumes:
+  database-data:

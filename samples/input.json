@@ -1,0 +1,52 @@
+{
+  "lotes": [
+    {
+      "lote_id": "SAR-260755-B",
+      "producto": "Sardina en aceite 555 g",
+      "autoclave": "AUT-R02",
+      "inicio": "2026-07-15T09:00:00-05:00",
+      "fin": "2026-07-15T09:50:00-05:00",
+      "temperatura_minima": 115.5,
+      "temperatura_maxima": 122.5,
+      "presion_minima": 1.1,
+      "presion_maxima": 1.7,
+      "lecturas": [
+        {"fecha_hora": "2026-07-15T09:12:00-05:00", "temperatura": 117.8, "presion": 1.28},
+        {"fecha_hora": "2026-07-15T09:36:00-05:00", "temperatura": 121.3, "presion": 1.61}
+      ]
+    },
+    {
+      "lote_id": "LOM-260665-A",
+      "producto": "Lomos de atún 278 g",
+      "autoclave": "AUT-R01",
+      "inicio": "2026-07-15T06:30:00-05:00",
+      "fin": "2026-07-15T07:35:00-05:00",
+      "temperatura_minima": 116.2,
+      "temperatura_maxima": 123.4,
+      "presion_minima": 1.15,
+      "presion_maxima": 1.75,
+      "lecturas": [
+        {"fecha_hora": "2026-07-15T06:42:00-05:00", "temperatura": 118.6, "presion": 1.31},
+        {"fecha_hora": "2026-07-15T07:03:00-05:00", "temperatura": 124.0, "presion": 1.58},
+        {"fecha_hora": "2026-07-15T07:24:00-05:00", "temperatura": 121.7, "presion": 1.69}
+      ]
+    },
+    {
+      "lote_id": "ATN-260715-TT",
+      "producto": "Atún al natural 240 g",
+      "autoclave": "AUT-R03",
+      "inicio": "2026-07-15T11:20:00-05:00",
+      "fin": "2026-07-15T12:25:00-05:00",
+      "temperatura_minima": 116.0,
+      "temperatura_maxima": 123.0,
+      "presion_minima": 1.2,
+      "presion_maxima": 1.8,
+      "lecturas": [
+        {"fecha_hora": "2026-07-15T11:31:00-05:00", "temperatura": 114.9, "presion": 1.08},
+        {"fecha_hora": "2026-07-15T11:49:00-05:00", "temperatura": 124.2, "presion": 1.46},
+        {"fecha_hora": "2026-07-15T12:07:00-05:00", "temperatura": 119.5, "presion": 1.92},
+        {"fecha_hora": "2026-07-15T12:19:00-05:00", "temperatura": 120.4, "presion": 1.57}
+      ]
+    }
+  ]
+}
